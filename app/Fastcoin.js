@@ -1,7 +1,7 @@
-
 "use client"
 import React, { useState } from 'react';
 import axios from 'axios';
+import Sidebar from '../components/Sidebar';
 
 const Fastcoin = () => {
   const [files, setFiles] = useState([]);
@@ -36,35 +36,36 @@ const Fastcoin = () => {
   };
 
   return (
-    <div className="container">
-      <header>
-        <h1>Fastcoin</h1>
-      </header>
-      <main>
-        <div className="upload-section">
-          <input type="file" id="fileInput" onChange={handleUpload} disabled={uploading} />
-          <button onClick={handleUpload} disabled={uploading}>
-            {uploading ? 'Uploading...' : 'Upload'}
-          </button>
-        </div>
-        <div className="file-list">
-          {files.map((file, index) => (
-            <div key={index} className="file-item">
-              <a href={file} target="_blank" rel="noopener noreferrer">{file}</a>
-              <button onClick={() => handleDelete(file)}>Delete</button>
-            </div>
-          ))}
-        </div>
-      </main>
+    <div className="page">
+      <Sidebar />
+      <div className="content">
+        <header>
+          <h1>Fastcoin</h1>
+        </header>
+        <main>
+          <div className="upload-section">
+            <input type="file" id="fileInput" onChange={handleUpload} disabled={uploading} />
+            <button onClick={handleUpload} disabled={uploading}>
+              {uploading ? 'Uploading...' : 'Upload'}
+            </button>
+          </div>
+          <div className="file-list">
+            {files.map((file, index) => (
+              <div key={index} className="file-item">
+                <a href={file} target="_blank" rel="noopener noreferrer">{file}</a>
+                <button onClick={() => handleDelete(file)}>Delete</button>
+              </div>
+            ))}
+          </div>
+        </main>
+      </div>
       <style jsx>{`
-        .container {
-          font-family: Arial, sans-serif;
+        .page {
           display: flex;
-          flex-direction: column;
-          align-items: center;
+        }
+        .content {
+          margin-left: 220px;
           padding: 20px;
-          background: #f0f2f5;
-          height: 100vh;
         }
         header {
           margin-bottom: 20px;

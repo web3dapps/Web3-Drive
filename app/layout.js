@@ -1,12 +1,20 @@
-"use client";
+"use client"
 import { Inter } from "next/font/google";
 import './global.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   const [account, setAccount] = useState(null);
+
+
+  useEffect(() => {
+    if (account) {
+      router.push('/dashboard');
+    }
+  }, [account]);
 
   const connectWallet = async () => {
     if (window.ethereum) {
